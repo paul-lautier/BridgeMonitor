@@ -1,8 +1,62 @@
-﻿@{
+﻿@model List<Closing>
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<h1>Prochaine Fermeture</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Cause / Bateau</th>
+            <th>Date de la fermeture</th>
+            <th>Heure de réouverture</th>
+            <th>Durée de la prochaine fermeture</th>
+            <th>Décompte</th>
+            <th>Risque de bouchons</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var nextBoat in Model)
+        {
+            var Closed = nextBoat.ReopeningDate - nextBoat.ClosingDate;
+
+            if (DateTime.Now < nextBoat.ClosingDate)
+            {
+                <tr>
+                    <td>@nextBoat.BoatName</td>
+                    <td>@nextBoat.ClosingDate.ToString("F", new System.Globalization.CultureInfo("fr-FR"))</td>
+                    <td>@nextBoat.ReopeningDate.ToString("F", new System.Globalization.CultureInfo("fr-FR"))</td>
+                    <td>@Closed</td>
+                    <td>
+                        <div id="countdown"></div>
+                        <p id="nextclose" style="display: none;">@nextBoat.ClosingDate.ToString("o")</p>
+                        <script>
+                            var countDownDate = new Date(document.getElementById("nextclose").innerHTML).getTime()
+                            var x = setInterval(function () {
+                                var now = new Date().getTime();
+                                var distance = countDownDate - now;
+                                var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                                var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                                var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                                var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                                document.getElementById("countdown").innerHTML = "Encore " + days + " jour(s), " + hours + " heure(s) "
+                                    + minutes + " minutes et " + seconds + " secondes avant la prochaine fermeture";
+                            }, 1000);
+                        </script>
+                    </td>
+                    @if ((7 <= nextBoat.ClosingDate.Hour & nextBoat.ClosingDate.Hour <= 9) | (17 <= nextBoat.ClosingDate.Hour &
+            nextBoat.ClosingDate.Hour <= 19))
+                    {
+                        <td>Elevé</td>
+                    }
+                    else
+                    {
+                        <td>Faible</td>
+                    }
+                </tr>
+                break;
+            }
+        }
+    </tbody>
+</table>
