@@ -40,3 +40,4 @@ C:\Users\admin\Desktop\ynov\B2\c#\BridgeMonitor\BridgeMonitor\obj\Debug\net5.0\B
 C:\Users\admin\Desktop\ynov\B2\c#\BridgeMonitor\BridgeMonitor\obj\Debug\net5.0\Razor\Views\Closing\DetailsClosing.cshtml.g.cs
 C:\Users\admin\Desktop\ynov\B2\c#\BridgeMonitor\BridgeMonitor\obj\Debug\net5.0\Razor\Views\Closing\NextClosing.cshtml.g.cs
 C:\Users\admin\Desktop\ynov\B2\c#\BridgeMonitor\BridgeMonitor\obj\Debug\net5.0\Razor\Views\Closing\AllClosing.cshtml.g.cs
+C:\Users\admin\Desktop\ynov\B2\c#\BridgeMonitor\BridgeMonitor\bin\Debug\net5.0\Newtonsoft.Json.dll
