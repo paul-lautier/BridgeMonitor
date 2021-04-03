@@ -28,7 +28,8 @@ namespace BridgeMonitor.Controllers
         }
         public IActionResult AllClosing()
         {
-            return View();
+            var BoatData = GetBoatDataFromApi();
+            return View(BoatData);
         }
         public IActionResult DetailsClosing()
         {
@@ -45,22 +46,21 @@ namespace BridgeMonitor.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     
-
-        private static List<Closing> GetClosingTimeFromApi()
-    {
-        //Création un HttpClient (= outil qui va permettre d'interroger une URl via une requête HTTP)
-        using (var client = new HttpClient())
+     private static List<Closing> GetBoatDataFromApi()
         {
-            //Interrogation de l'URL censée me retourner les données
-            var response = client.GetAsync("http://api.alexandredubois.com/vcub-backend/vcub.php");
-            //Récupération du corps de la réponse HTTP sous forme de chaîne de caractères
-            var stringResult = response.Result.Content.ReadAsStringAsync();
-            //Conversion de mon flux JSON (string) en une collection d'objets BikeStation
-            //d'un flux de données vers des objets => Déserialisation
-            //d'objets vers un flux de données => Sérialisation
-            var result = JsonConvert.DeserializeObject<List<Closing>>(stringResult.Result);
-            return result;
+            //Création un HttpClient (= outil qui va permettre d'interroger une URl via une requête HTTP)
+            using (var client = new HttpClient())
+            {
+                //Interrogation de l'URL censée me retourner les données
+                var response = client.GetAsync("https://api.alexandredubois.com/pont-chaban/api.php");
+                //Récupération du corps de la réponse HTTP sous forme de chaîne de caractères
+                var stringResult = response.Result.Content.ReadAsStringAsync();
+                //Conversion de mon flux JSON (string) en une collection d'objets BikeStation
+                //d'un flux de données vers des objets => Déserialisation
+                //d'objets vers un flux de données => Sérialisation
+                var result = JsonConvert.DeserializeObject<List<Closing>>(stringResult.Result);
+                return result;
+            }
         }
     }
-}
 }

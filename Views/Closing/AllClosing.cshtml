@@ -1,6 +1,62 @@
-@{
-    ViewData["Title"] = "Fermetures ";
-}
-<h1>@ViewData["Title"]</h1>
+@model List<Closing>
 
-<p>toutes les fermetures</p>
+@{
+    ViewData["Title"] = "Toutes les Fermeture";
+}
+
+@{
+    List<Closing> clear = new List<Closing>();
+    List<Closing> inComing = new List<Closing>();    
+}
+@foreach (var Boat in Model) {
+    DateTime currentDate = DateTime.Now;
+    DateTime closingDate = @Boat.ClosingDate;
+    int temp = DateTime.Compare(closingDate, currentDate);
+    if (temp == 1) {
+        clear.Add(Boat);
+    } else {
+        inComing.Add(Boat);
+    }
+}
+    <h1>Fermeture passés</h1>
+<table style="list-group">
+    <thead>
+        <tr>
+            <td>Bateaux</td>
+            <td>Date fermeture</td>
+            <td>Durée fermeture</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var Boat in clear)
+        {
+            var Closed = Boat.ReopeningDate - Boat.ClosingDate;
+            <tr>
+                <td>@Boat.BoatName</td>
+                <td>@Boat.ClosingDate</td>
+                <td>@Closed.Hours h @Closed.Minutes</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h1>Fermeture à venir</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Date fermeture</th>
+            <th>Durée fermeture</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var Boat in inComing)
+        {
+           <tr>
+                <td>@Boat.BoatName</td>
+                <td>@Boat.ClosingDate</td>
+                <td>@Html.Raw(@Boat.ReopeningDate - @Boat.ClosingDate)</td>
+            </tr>
+        }
+    </tbody>
+</table>
