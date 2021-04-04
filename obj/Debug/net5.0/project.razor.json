@@ -15618,11 +15618,6 @@
       "FileKind": "mvc"
     },
     {
-      "FilePath": "c:\\Users\\admin\\Desktop\\ynov\\B2\\c#\\BridgeMonitor\\BridgeMonitor\\Views\\Closing\\NextClosing.cshtml",
-      "TargetPath": "Views\\Closing\\NextClosing.cshtml",
-      "FileKind": "mvc"
-    },
-    {
       "FilePath": "c:\\Users\\admin\\Desktop\\ynov\\B2\\c#\\BridgeMonitor\\BridgeMonitor\\Views\\_ViewImports.cshtml",
       "TargetPath": "Views\\_ViewImports.cshtml",
       "FileKind": "mvc"
@@ -15630,11 +15625,6 @@
     {
       "FilePath": "c:\\Users\\admin\\Desktop\\ynov\\B2\\c#\\BridgeMonitor\\BridgeMonitor\\Views\\_ViewStart.cshtml",
       "TargetPath": "Views\\_ViewStart.cshtml",
-      "FileKind": "mvc"
-    },
-    {
-      "FilePath": "c:\\Users\\admin\\Desktop\\ynov\\B2\\c#\\BridgeMonitor\\BridgeMonitor\\Views\\Closing\\DetailsClosing.cshtml",
-      "TargetPath": "Views\\Closing\\DetailsClosing.cshtml",
       "FileKind": "mvc"
     },
     {

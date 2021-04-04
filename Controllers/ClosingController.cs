@@ -31,14 +31,6 @@ namespace BridgeMonitor.Controllers
             var BoatData = GetBoatDataFromApi();
             return View(BoatData);
         }
-        public IActionResult DetailsClosing()
-        {
-            return View();
-        }
-        public IActionResult NextClosing()
-        {
-            return View();
-        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
